@@ -28,7 +28,11 @@ module.exports = {
             let user = new User({
               name,
               email,
-              password: hash
+              password: hash,
+              balance: 0,
+              income: 0,
+              expense: 0,
+              transactions: []
             });
 
             await user.save();
@@ -71,7 +75,11 @@ module.exports = {
           {
             _id: user._id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            amount: user.amount,
+            income: user.income,
+            expense: user.expense,
+            transactions: user.transactions
           },
           "naser",
           { expiresIn: "2h" }
@@ -84,5 +92,9 @@ module.exports = {
     } catch (error) {
       serverError(res, error);
     }
+  },
+  getAllUsers: async (req, res) => {
+    const users = await User.find();
+    res.status(200).json(users);
   }
 };

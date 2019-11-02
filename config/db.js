@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const keys = require("../config/keys");
 
 module.exports = connectDB = async () => {
   try {
     mongoose.connect(
-      "mongodb://localhost:27017/money-management-app",
+      keys.mongoURI,
       { useNewUrlParser: true, useUnifiedTopology: true },
       () => {
         console.log("MongoDB Connected");
