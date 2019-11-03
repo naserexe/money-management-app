@@ -10,6 +10,7 @@ import setAuthToken from "./utils/setAuthToken";
 import Home from "./components/pages/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Dashboard from "./components/pages/Dashboard";
 
 function App() {
   const token = localStorage.getItem("jwt_token");
@@ -29,6 +30,7 @@ function App() {
             <Route path='/' exact component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            <Route path='/dashboard' component={Dashboard} />
           </Switch>
         </div>
       </BrowserRouter>

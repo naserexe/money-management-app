@@ -10,8 +10,9 @@ const authenticate = require("../config/authenticate");
 // @desc    Get all transaction
 // @access  Private
 router.get("/", authenticate, async (req, res) => {
+  let { _id } = req.user;
   try {
-    const transaction = await Transaction.find();
+    const transaction = await Transaction.find({ user: _id });
     if (transaction.length === 0) {
       res.status(404).json({ message: "No transaction found" });
     } else {

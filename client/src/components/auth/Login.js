@@ -13,6 +13,7 @@ const Login = props => {
   const { error } = props.auth;
 
   useEffect(() => {
+    // eslint-disable-next-line
     errors = setErrors(error);
   }, [error]);
 
@@ -33,7 +34,9 @@ const Login = props => {
             <input
               type='text'
               className={
-                errors.email ? "form-control is-invalid" : "form-control"
+                errors.email || errors.message
+                  ? "form-control is-invalid"
+                  : "form-control"
               }
               placeholder='Enter Your Email'
               name='email'
@@ -41,9 +44,11 @@ const Login = props => {
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
-            {errors.email && (
-              <div className='invalid-feedback'>{errors.email}</div>
-            )}
+            {errors.email || errors.message ? (
+              <div className='invalid-feedback'>
+                {errors.email || errors.message}
+              </div>
+            ) : null}
           </div>
           <div className='form-group'>
             <input

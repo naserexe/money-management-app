@@ -16,6 +16,7 @@ const Register = props => {
   const { error } = props.auth;
 
   useEffect(() => {
+    // eslint-disable-next-line
     errors = setErrors(error);
   }, [error]);
 
